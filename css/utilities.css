@@ -68,7 +68,7 @@
     height: 100%;
 }
 
-.flex-items > div {
+.benefits__item {
     max-width: 450px;
     padding: 20px;
 }
