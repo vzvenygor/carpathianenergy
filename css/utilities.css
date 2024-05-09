@@ -69,6 +69,7 @@
 }
 
 .flex-items > div {
+    max-width: 450px;
     padding: 20px;
 }
 

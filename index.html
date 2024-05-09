@@ -216,30 +216,34 @@
       <!--Benefits-->
       <section class="icons bg-light">
         <div class="flex-items">
-          <div>
+          <div class="benefits__item">
             <i class="fas fa-cog fa-2x aria-hidden=" true></i>
             <div>
-              <h3>Автоматизація процесів</h3>
-              <p>Автоматизована віддалена диспетчеризація сонячних станцій.</p>
-            </div>
-          </div>
-          <div>
-            <i class="fas fas fa-arrow-circle-up fa-2x aria-hidden=" true></i>
-            <div>
-              <h3>Оптимізація</h3>
+              <h3>Досвід</h3>
               <p>
-                Застосовуючи інноваційні технології, оптимізуємо процеси та
-                зменшуємо ваші витрати.
+                Працюємо з 2019 року на ринку надання послуг з віддаленого
+                диспетчерського керування потужностями СЕС, віддаленого
+                моніторингу обладнання та проводимо аналіз ефективності роботи
               </p>
             </div>
           </div>
-          <div>
+          <div class="benefits__item">
+            <i class="fas fas fa-arrow-circle-up fa-2x aria-hidden=" true></i>
+            <div>
+              <h3>Програмне забезпечення</h3>
+              <p>
+                Для автоматизації процесів використовується найсучасніше ПЗ
+                Скада-Зенон (Австрія)
+              </p>
+            </div>
+          </div>
+          <div class="benefits__item">
             <i class="fas fa-leaf fa-2x aria-hidden=" true></i>
             <div>
-              <h3>Обслуговування</h3>
+              <h3>Аналітика</h3>
               <p>
-                Регулярне технічне обслуговування, що підвищує ефективність
-                роботи СЕС.
+                Аналіз ефективності роботи СЕС: проведення аналізу генерації,
+                пошук «вузьких місць»
               </p>
             </div>
           </div>
@@ -273,7 +277,8 @@
                 <input
                   type="hidden"
                   name="redirect"
-                  value="https://vzvenygor.github.io/carpathianenergy/success"
+                  value="https://carpathianenergy.com/success.html"
+                  target="blanc"
                 />
 
                 <div class="form-control">
@@ -329,6 +334,8 @@
                   id="submit"
                   class="btn"
                 />
+
+                <div id="result"></div>
               </form>
             </div>
           </div>
@@ -382,5 +389,6 @@
     </footer>
     <script src="scripts/navbar.js"></script>
     <script src="scripts/burger.js"></script>
+    <script src="scripts/form.js"></script>
   </body>
 </html>

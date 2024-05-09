@@ -338,6 +338,24 @@ img {
   color: #0D5257;
 }
 
+#result {
+  display: none;
+  position: absolute;
+  top: 0%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  color: #050505;
+  background-color: #ccc;
+  border: #f6be00 2px solid;
+  opacity: 0.7;
+  border-radius: 10px;
+  font-size: 30px;
+  font-weight: 700;
+  padding-top: 20%;
+}
+
 /* Footer */
 .footer {
   text-align: center;

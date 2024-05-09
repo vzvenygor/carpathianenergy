@@ -1,68 +1,44 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const form = document.getElementById('form');
-  form.addEventListener('submit', formSend);
+window.onload = function () {
+  // Reset the form fields when the page loads
+  document.getElementById("form").reset();
+};
 
-  async function formSend(e) {
-    e.preventDefault();
+const form = document.getElementById("form");
+const result = document.getElementById("result");
 
-    let error = formValidate(form);
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+  const formData = new FormData(form);
+  const object = Object.fromEntries(formData);
+  const json = JSON.stringify(object);
+  result.style.display = "block";
+  result.innerHTML = "Будь ласка, зачекайте. Надсилаємо дані";
 
-    let formData = new FormData(form);
-
-    if (error === 0) {
-      form.classList.add('_sending');
-      let response = await fetch('sendmail.php', {
-        method: 'POST',
-        body: formData
-      });
-  
-      if (response.ok) {
-        let result = await response.json();
-        alert(result.message);
-        form.reset();
-        form.classList.remove('_sending');
+  fetch("https://api.web3forms.com/submit", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: json,
+  })
+    .then(async (response) => {
+      let json = await response.json();
+      if (response.status == 200) {
+        result.innerHTML = "Дякуємо! Ваші дані успішно надіслані";
       } else {
-        alert('Під час відправки даних виникла помилка');
-        form.classList.remove('_sending');
+        console.log(response);
+        result.innerHTML = json.message;
       }
-    } else {
-      alert('Заповніть усі поля форми');
-    }
-  }
-
-  function formValidate(form) {
-    let error = 0;
-    let formReq = document.querySelectorAll('._req');
-
-    for (let index = 0; index < formReq.length; index++) {
-      const input = formReq[index];
-      formRemoveError(input);
-
-      if (input.classList.contains('_email')) {
-        if (emailTest(input)) {
-          formAddError(input);
-          error++;
-        } 
-      }
-        
-      if (input.value === '') {
-        formAddError(input);
-        error++;
-      }
-    }
-  }
-
-  function formAddError(input) {
-    input.parentElement.classList.add('_error');
-    input.classList.add('_error');
-  }
-
-  function formRemoveError(input) {
-    input.parentElement.classList.remove('_error');
-    input.classList.remove('_error');
-  }
-
-  function emailTest(input) {
-    return !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test(input.value);
-  }
+    })
+    .catch((error) => {
+      console.log(error);
+      result.innerHTML = "Виникла помилка! Дані не відправлені";
+    })
+    .then(function () {
+      form.reset();
+      setTimeout(() => {
+        result.style.display = "none";
+      }, 3000);
+    });
 });
